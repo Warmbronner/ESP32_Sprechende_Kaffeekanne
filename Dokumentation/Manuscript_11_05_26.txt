@@ -1,0 +1,141 @@
+Titel
+Sprechende Kaffeekanne
+Vorspann
+Eine historische Blech-Kaffeekanne lernt sprechen: Mit ESP32, MP3-Modul, Servo und etwas Fischertechnik entsteht eine ungew?hnliche Uhr mit Charakter.
+Kurzinfo
+* Kombination aus Mechanik, Audio und Licht
+* Modulares Innenleben ohne Ver?nderungen an der Kanne
+* ESP32 mit WLAN-Zeitabgleich und synchronisierter Bewegung
+Checkliste
+Zeitaufwand: ein Wochenende
+Kosten:
+ca. 40 bis 60 Euro je nach vorhandenen Materialien und 3D-Druckm?glichkeiten, ohne Fischertechnik
+Ben?tigte Kenntnisse:
+* Grundlagen Arduino IDE
+* L?ten und Verdrahten
+* Einfache Konstruktion mit 3D-Druck
+Material
+* ESP32 NodeMCU 32S
+* Servo M90 mit Metallgetriebe
+* MP3 MiniPlayer
+* Lautsprecher 8 Ohm, passend zum MP3 Player
+* Breadboard mini 2 x 3 cm
+* 2 Widerst?nde 670 Ohm
+* 1 Kondensator 0,01 F
+* NeoPixel-Streifen mit 4 LED?s
+* Jumperkabel
+* PLA Filament f?r Drei D Drucker
+* Klettband?>Kabelschlauch
+* 3 Neodym Magnete 10 x 3 mm
+* 4 Neodym Magnete 3 X 2 mm
+* Kabelbinder 
+* 2 Gewindeh?lsen M3
+Ben?tigte Werkzeuge:
+* 3D-Drucker
+* L?tkolben
+* Seitenschneider
+* Hei?klebepistole oder Sekundenkleber
+Einleitung
+Es gibt Projekte, die sind praktisch. Und es gibt Projekte, die machen einfach Spa? ? oft mit deutlich h?herem Lernfaktor. Dieses hier geh?rt eindeutig zur zweiten Kategorie.
+Auf einer Kommode in unserem Haushalt steht eine rund 100 Jahre alte, emaillierte Blech-Kaffeekanne. Eigentlich ein reines Dekost?ck ? bis sich die Frage aufdr?ngte: Warum sollte sie nicht mehr k?nnen, als nur gut auszusehen?
+Die Idee: Die Kanne soll sprechen. Genauer gesagt, sie soll regelm??ig die Uhrzeit ansagen ? zur vollen oder halben Stunde. Eine etwas andere ?sprechende Uhr?, die garantiert mehr Aufmerksamkeit bekommt als jedes Display.
+Der besondere Reiz liegt im Detail: Der Deckel der Kanne ist beweglich und eignet sich perfekt, um als ?Mund? zu fungieren. Synchron zur Sprachausgabe soll er sich ?ffnen und schlie?en ? eine mechanische Illusion von Sprache.
+Von Anfang an war jedoch klar: Die Kanne selbst bleibt unangetastet. Keine Bohrungen, keine Klebespuren, keine bleibenden Ver?nderungen. Die gesamte Technik muss sich unsichtbar integrieren und r?ckstandslos wieder entfernen lassen ? eine Herausforderung, die das Projekt erst richtig interessant macht.
+Bildunterschrift Abbildung 1:
+Die emaillierte Kaffeekanne dient als Basis des Projekts. ?u?erlich bleibt sie vollst?ndig unver?ndert.
+Konzept und L?sungsansatz
+Damit aus der stummen Kanne ein erz?hlfreudiges Objekt wird, braucht es im Kern drei Dinge: Bewegung, Ton und ein wenig Inszenierung. Konkret hei?t das: Der Deckel muss sich bewegen, eine Sprachausgabe muss abgespielt werden ? und als visuelles Extra sorgt ein Licht im Inneren f?r den passenden ?magischen? Effekt. Gesteuert wird das Ganze von einem Mikrocontroller, der zus?tzlich die aktuelle Uhrzeit ermittelt und verarbeitet.
+Damit zerf?llt das Projekt in vier zentrale Aufgaben:
+* Mechanik f?r die Deckelbewegung
+* Audioausgabe
+* Beleuchtung
+* Zeitbasis inklusive Steuerlogik
+Mechanik
+F?r die Bewegung des Deckels standen zun?chst mehrere Ans?tze zur Diskussion. Die erste Idee war ein klassischer Kurbeltrieb mit Pleuelstange. Funktioniert grunds?tzlich gut, ist aber mechanisch vergleichsweise aufwendig.
+Deutlich pragmatischer erwies sich der zweite Ansatz: Fischertechnik. Davon ist im Haushalt reichlich vorhanden, und die modularen Bauteile eignen sich perfekt f?r schnelle Prototypen. Der Antrieb erfolgt ?ber einen Servo, da sich damit Positionen exakt anfahren lassen und der Nullpunkt zuverl?ssig reproduzierbar ist.
+Zum Einsatz kam ein Servo M90 mit Metallgetriebe ? robust genug f?r die Aufgabe und gut kontrollierbar. Die Kopplung zwischen Servo und Mechanik entstand aus einer improvisierten, aber effektiven L?sung: einer Scheibe mit Stellschraube, kombiniert mit den originalen Servoarmen. Zwei kleine Holzschrauben sorgen f?r die kraftschl?ssige Verbindung.
+Bildunterschrift Abbildung 2:
+Die Mechanik kombiniert Fischertechnik-Bauteile mit einem kleinen Servo und einer selbstgebauten Kupplung.
+Die Schubstange steht im eingebauten Zustand senkrecht und wird ?ber eine F?hrung im Deckel stabilisiert. Der Servo selbst sitzt in einem 3D-gedruckten Geh?use, das auf einem Fischertechnik-Element befestigt beziehungsweise verklebt ist.
+Audio
+F?r die Sprachausgabe fiel die Wahl schnell auf einen bew?hrten Klassiker: einen MP3-Mini-Player mit angeschlossenem Lautsprecher. Damit l?sst sich die Audiowiedergabe unkompliziert ansteuern.
+Aufwendiger als gedacht war hingegen die Erstellung der passenden Sprachdateien. Die Ansage muss nicht nur korrekt sein, sondern auch zeitlich zur Deckelbewegung passen. Erste Versuche mit Smartphone-Aufnahmen erwiesen sich als umst?ndlich, vor allem wegen der n?tigen Nachbearbeitung und Konvertierung.
+Die L?sung brachte schlie?lich Audacity: aufnehmen, schneiden, anpassen ? alles in einem Werkzeug. Damit lie? sich die Synchronisation zwischen Bewegung und Ton sauber umsetzen.
+Licht
+F?r den zus?tzlichen Effekt sorgt eine dezente Innenbeleuchtung. Hier kommen adressierbare LEDs vom Typ NeoPixel zum Einsatz. Ein kurzer Streifen mit vier LEDs reicht v?llig aus ? tats?chlich werden nicht einmal alle ben?tigt.
+W?hrend der Sprachausgabe leuchtet das Kanneninnere leicht auf und verst?rkt so den Eindruck, dass ?innen etwas passiert?.
+Elektronik
+Die urspr?ngliche Idee war, die komplette Technik in der Kanne zu verstecken. In der Praxis scheiterte das schnell am verf?gbaren Platz ? und an der Wartbarkeit.
+Gerade beim verwendeten ESP32 NodeMCU32S m?ssen zum Programmieren Taster zug?nglich sein. Auch die SD-Karte des MP3-Moduls soll ohne Zerlegen erreichbar bleiben. Zudem lebt das Projekt davon, dass man sp?ter Dinge ver?ndern und erweitern kann.
+Die L?sung: Ein separater, abnehmbarer Unterbau. Darin sitzen:
+* Mikrocontroller
+* MP3-Modul
+* Stromversorgung
+Die Verbindung zur Kanne erfolgt ?ber ein Kabelb?ndel, das durch die T?lle gef?hrt wird. Optisch verschwindet es in einer schwarzen Ummantelung ? getarnt als ?Kaffeestrahl?. Der ?bergang zum Unterbau wird zus?tzlich durch eine dekorativ platzierte Tasse kaschiert.
+Bildunterschrift Abbildung 3:
+Der Unterbau enth?lt Elektronik und Stromversorgung. Die Verkabelung verschwindet im ?Kaffeestrahl?.
+Innenleben
+Das Innere der Kanne ist schwer zug?nglich ? also musste eine modulare L?sung her. Alle Komponenten im Inneren wurden zu einer kompakten Einheit zusammengefasst, die sich komplett einsetzen und wieder entnehmen l?sst.
+Die Form ergibt sich dabei fast von selbst: zylindrisch. F?ndig wurde ich schlie?lich bei einer simplen Haushaltsdose f?r Flohsamenschalen, die zuf?llig perfekt in die Kanne passt.
+Bildunterschrift Abbildung 4:
+Das komplette Innenmodul sitzt in einer Kunststoffdose und l?sst sich als Einheit entnehmen.
+Im Inneren der Dose befinden sich die Mechanik, der Lautsprecher, die LEDs und die F?hrungselemente f?r die Schubstange.
+Zum Herausnehmen dient ein stabiler Zwirnfaden, der unauff?llig angebracht ist und bei Bedarf mit einem Haken herausgezogen werden kann.
+Zeitbasis
+Herzst?ck der Steuerung ist ein ESP32, der gegen?ber klassischen Arduino-Boards einen entscheidenden Vorteil bietet: WLAN. Damit l?sst sich die Uhrzeit bequem ?ber einen NTP-Server beziehen.
+Der Programmcode basiert auf bestehenden Projekten und wurde schrittweise angepasst und erweitert. Besonders bei der Feinabstimmung ? etwa beim Stromverbrauch, bei der Sommerzeitumstellung oder bei der Servoansteuerung ? hat KI-Unterst?tzung ?berraschend effektiv geholfen.
+Bau und Umsetzung
+Der praktische Aufbau beginnt ? wie so oft ? nicht mit Schrauben und Kleber, sondern mit einem provisorischen Versuchsaufbau auf dem Tisch. Alle Komponenten werden zun?chst lose miteinander verbunden, um die grunds?tzliche Funktion sicherzustellen, bevor Zeit in Mechanik und Geh?use investiert wird.
+Ausgangspunkt ist der Mikrocontroller, ein ESP32 NodeMCU-32S. Auf einem kleinen Breadboard werden Servo, MP3-Player, Lautsprecher und NeoPixel-Streifen angeschlossen. Widerst?nde und ein Kondensator stabilisieren die Signale und die Versorgung.
+Bildunterschrift Abbildung 5:
+Das Schaltschema zeigt die Verbindung von ESP32, MP3-Player, Servo, LEDs und Spannungsversorgung.
+Bereits in dieser fr?hen Phase lohnt sich systematisches Testen. Zun?chst wird der Servo isoliert angesteuert, um sicherzustellen, dass die Bewegung reproduzierbar und ruhig erfolgt. Anschlie?end folgt die Audioausgabe.
+Genau hier zeigte sich im Projekt eine typische Stolperfalle: Der zun?chst verwendete MP3-Player blieb komplett stumm. Weder Status-LED noch Audioausgabe reagierten. Erst der Austausch gegen ein alternatives Modul brachte Leben in die Schaltung.
+Doch auch damit war das Problem noch nicht vollst?ndig gel?st. Die Wiedergabe funktionierte zwar, aber nicht zuverl?ssig. Ursache war letztlich die Spannungsversorgung: Sobald alle Komponenten an einer gemeinsamen Quelle betrieben wurden, kam es zu Aussetzern.
+Die L?sung bestand darin, die Versorgung aufzutrennen. Der MP3-Player erhielt eine eigene Spannungsquelle, w?hrend sich ESP32, Servo und LEDs eine zweite Versorgung teilen. Erst mit dieser Trennung lief das System stabil ? eine Erfahrung, die man sich f?r ?hnliche Projekte merken sollte.
+Parallel zur Hardware entsteht der Programmcode. Statt bei null zu beginnen, bietet es sich an, vorhandene Routinen als Basis zu verwenden und schrittweise anzupassen. Zun?chst werden einfache Testfunktionen implementiert: Servo bewegen, Audio abspielen, LEDs schalten. Im n?chsten Schritt werden diese Funktionen zeitlich aufeinander abgestimmt.
+Gerade die Synchronisation von Bewegung und Sprache erfordert etwas Geduld. Kleine Verz?gerungen im Code und sauber geschnittene Audiodateien f?hren schlie?lich zum gew?nschten Ergebnis. Unterst?tzung bei der Optimierung, etwa beim Stromverbrauch oder der Servo-Ansteuerung, lieferte ChatGPT.
+Kasten 1:
+Programmcode f?r den ESP32
+Kasten 2:
+Testcode zur Pr?fung von Bewegung, Ton und Licht
+Erst wenn Elektronik und Software zuverl?ssig funktionieren, lohnt sich der ?bergang zur Mechanik.
+Die Bewegungseinheit wird aus Fischertechnik-Elementen aufgebaut. Der Servo treibt ?ber eine selbstgefertigte Kupplung eine kleine Kettenmechanik an. Auf der Kette sitzt ein Mitnehmer, der die Schubstange bewegt. Der Abstand der Zahnr?der bestimmt dabei direkt den maximalen Hub ? in diesem Fall etwa f?nf Zentimeter.
+Die Schubstange wird durch den Deckel gef?hrt und dort stabilisiert. Um Reibung zu minimieren und ein Verkanten zu verhindern, wurde zun?chst eine Rollenf?hrung konstruiert.
+
+Die F?hrung der Schubstange -siehe Kasten 3- stabilisiert den Deckel und reduziert st?rende Reibung.
+Dieses Rollenelement enth?lt eine etwa vier Zentimeter lange F?hrungsstange, die durch ein zweites Loch im Deckel fixiert wird. Das gedruckte Teil zur Aufnahme der beiden Stangen ist ebenfalls im Kasten mit den 3D-gedruckten Bauteilen dargestellt.
+Damit Madenschrauben zur Fixierung der beiden Stangen untergebracht werden k?nnen, sind die Sackbohrungen mit Gewindeh?lsen M3 versehen. Die Gewindeh?lsen werden mit einem L?tkolben auf etwa 200 Grad Celsius erw?rmt und anschlie?end eingedr?ckt.
+Die Konstruktion funktioniert zuverl?ssig, ist aber vergleichsweise aufwendig. In der Praxis h?tte auch eine einfache Kunststoffkappe am Ende der Schubstange denselben Zweck erf?llt.
+Parallel dazu entsteht das Innenmodul. Die gew?hlte Dose wird seitlich ge?ffnet, um Zugang zur Mechanik zu schaffen.
+Auf Boden und Mechanik werden Klettstreifen angebracht ? eine einfache, aber ?u?erst praktische L?sung, um Komponenten sp?ter wieder l?sen zu k?nnen.
+Um die Dose in der Kanne zu zentrieren, entstand zus?tzlich ein gedruckter Distanzring, der lose auf dem Kannenboden liegt.
+Der Deckel der Dose ?bernimmt mehrere Funktionen gleichzeitig: Er tr?gt die F?hrung der Schubstange, den Lautsprecher sowie den LED-Streifen. Die Verkabelung wird durch den Deckel in die Dose und anschlie?end nach au?en gef?hrt.
+Vor dem endg?ltigen Einbau folgt ein vollst?ndiger Funktionstest:
+* Bewegt sich der Deckel sauber?
+* Passt die Synchronisation?
+* Funktionieren Licht und Ton zuverl?ssig?
+Erst wenn alle Fragen mit ?Ja? beantwortet sind, wird das Modul vorsichtig in die Kanne eingeschoben und am Boden fixiert. Eine einfache Fadenschlaufe erm?glicht es, das Modul sp?ter wieder herauszuziehen ? ein kleines Detail mit gro?em praktischem Nutzen.
+Der Unterbau entsteht anschlie?end im 3D-Druck. Er besteht aus zwei Teilen ? Rahmen und Boden ?, die sp?ter miteinander verklebt werden.
+Bildunterschrift Abbildung 6:
+Die gedruckten Teile des Unterbaus nehmen Elektronik und Stromversorgung auf.
+Darin finden ESP32, MP3-Player, Stromanschl?sse und Breadboard ihren Platz.
+F?r die Befestigung an der Kanne kommen Neodym-Magnete zum Einsatz. Da die Kanne aus Blech besteht, h?lt diese L?sung ?berraschend zuverl?ssig ? und bleibt vollst?ndig reversibel.
+Wichtig bei der Konstruktion: Die Bedienelemente des ESP32 m?ssen zug?nglich bleiben. Entsprechend wurden im Boden ?ffnungen f?r Boot- und Reset-Taster vorgesehen.
+Zum Abschluss werden alle Kabel zusammengef?hrt und durch die T?lle der Kanne nach unten geleitet. Ein schwarzer Kabelschlauch b?ndelt die Leitungen und tarnt sie gleichzeitig als ?Kaffeestrahl?.
+Die zus?tzlich platzierte, zweiteilige Kaffeetasse verdeckt den ?bergang zum Unterbau und rundet die Illusion ab. Auch den Zusammenhalt der beiden Teile ?bernehmen kleine Neodym-Magnete.
+Kasten 3:
+?bersicht der 3D-gedruckten Bauteile
+Fazit
+Technisch ist das Projekt ?berschaubar ? aber voller kleiner Herausforderungen.
+Die wichtigsten Erkenntnisse:
+* Nicht jedes Elektronikmodul h?lt, was es verspricht
+* MP3-Player reagieren empfindlich auf die Stromversorgung
+* Mechanik muss nicht nur funktionieren, sondern auch leise sein
+* Modulare Bauweise spart sp?ter viel Aufwand
+* Baukastensysteme wie Fischertechnik sind ?berraschend vielseitig
+Besonders hilfreich war der Einsatz von KI-Tools wie ChatGPT ? sowohl bei der Softwareentwicklung als auch bei der Fehlersuche.
+Am Ende steht ein Projekt, das objektiv betrachtet wenig Nutzen hat ? aber genau deshalb ?berzeugt. Denn manchmal ist es eben die nutzlose Idee, die am meisten Spa? macht.
+Der Nutzwert l?sst sich problemlos erh?hen: Die Zeitansage k?nnte beispielsweise viertel- oder halbst?ndlich erfolgen. Ebenso w?re eine Kombination mit einer klassischen Uhr denkbar. Dann w?rde aus der sprechenden Kaffeekanne sogar ein vollst?ndiges Zeit-Informationssystem.
+Abbildung 7 Kaffeekanne erg?nzt durch analoge Uhr
+
